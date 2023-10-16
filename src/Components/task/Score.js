@@ -15,15 +15,18 @@
 
 // CORRECT CODE
 
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { increment } from '../../Storage/Utilities/utilsScore';
 
 function Score() {
-    const [score, setScore] = useState(0);
+    const score = useSelector((state) => state.score.value);
+    const dispatch = useDispatch();
 
     return (
         <div>
             <p>Τρέχον σκορ REDUX: {score}</p>
-            <button onClick={() => setScore(score + 1)}>Αύξηση</button>
+            <button onClick={() => { dispatch(increment(score)); }}>Αύξηση</button>
         </div>
     );
 }
